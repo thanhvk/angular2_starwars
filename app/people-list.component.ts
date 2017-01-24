@@ -7,24 +7,23 @@ import { Person } from './person';
 	selector: 'people-list',
 	template: `
 		<ul>
-			<li *ngFor="let person of people" (click)=selectPerson(person)>
-				{{person.name}}
+			<li *ngFor="let person of people">
+				<a href="#" [routerLink]="['/persons', person.id]"> 
+					{{person.name}}
+				</a>
 			</li>
 		</ul>
-		<div>
-
-		</div>
 	`
 })
 export class PeopleListComponent implements OnInit {
 	people: Person[] = [];
 	selectedPerson: Person;
 
-	constructor(private _peopleService: PeopleService) {		
+	constructor(private peopleService: PeopleService) {		
 	};
 
 	ngOnInit() {
-		this.people = this._peopleService.getAll();
+		this.people = this.peopleService.getAll();
 	}
 
 	selectPerson(person: Person) {

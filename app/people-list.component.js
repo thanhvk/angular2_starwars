@@ -11,13 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var people_service_1 = require('./people.service');
 var PeopleListComponent = (function () {
-    function PeopleListComponent(_peopleService) {
-        this._peopleService = _peopleService;
+    function PeopleListComponent(peopleService) {
+        this.peopleService = peopleService;
         this.people = [];
     }
     ;
     PeopleListComponent.prototype.ngOnInit = function () {
-        this.people = this._peopleService.getAll();
+        this.people = this.peopleService.getAll();
     };
     PeopleListComponent.prototype.selectPerson = function (person) {
         this.selectedPerson = person;
@@ -25,7 +25,7 @@ var PeopleListComponent = (function () {
     PeopleListComponent = __decorate([
         core_1.Component({
             selector: 'people-list',
-            template: "\n\t\t<ul>\n\t\t\t<li *ngFor=\"let person of people\" (click)=selectPerson(person)>\n\t\t\t\t{{person.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<div>\n\n\t\t</div>\n\t"
+            template: "\n\t\t<ul>\n\t\t\t<li *ngFor=\"let person of people\">\n\t\t\t\t<a href=\"#\" [routerLink]=\"['/persons', person.id]\"> \n\t\t\t\t\t{{person.name}}\n\t\t\t\t</a>\n\t\t\t</li>\n\t\t</ul>\n\t"
         }), 
         __metadata('design:paramtypes', [people_service_1.PeopleService])
     ], PeopleListComponent);
